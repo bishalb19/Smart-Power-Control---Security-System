@@ -1,0 +1,99 @@
+char data = 0;
+int opt = 0;
+
+void setup() 
+{
+  Serial.begin(9600);         //Sets the data rate in bits per second (baud) for serial data transmission
+  pinMode(8, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+}
+void loop()
+{
+  if(Serial.available() > 0)  // Send data only when you receive data:
+  {
+    data = Serial.read();      //Read the incoming data and store it into variable data
+
+    if(data == 'A')
+    {
+      opt = 1;
+    }
+    if(data == 'B')
+    {
+      opt = 0;
+    }
+  }
+
+    if(opt == 1)
+    {
+      forOptimizeOn();
+    }
+     if(opt == 0)
+    {
+      forOptimizeOff();
+    }
+}
+
+void forOptimizeOn()
+{
+    if(Serial.available() > 0)
+    {
+           data = Serial.read();
+           if(data == 'C')            //Checks whether value of data is equal to 1 
+            {
+              digitalWrite(8, HIGH);  //If value is 1 then LED turns ON
+            }
+          else if(data == 'D')       //Checks whether value of data is equal to 0
+            {
+          digitalWrite(8, LOW);   //If value is 0 then LED turns OFF
+            }
+          else if(data == 'E')            //Checks whether value of data is equal to 1 
+            {
+            digitalWrite(9, HIGH);  //If value is 1 then LED turns ON
+            }
+          else if(data == 'F')       //Checks whether value of data is equal to 0
+            {
+            digitalWrite(9, LOW);
+            }
+          else if(data == 'G')            //Checks whether value of data is equal to 1 
+            {
+            digitalWrite(10, LOW);  //If value is 1 then LED turns ON
+            }
+          else if(data == 'H')       //Checks whether value of data is equal to 0
+            {
+            digitalWrite(10, LOW);       
+            }
+    }
+}
+void forOptimizeOff()
+{
+    if(Serial.available() > 0)
+    {
+        data = Serial.read();
+        if(data == 'C')            //Checks whether value of data is equal to 1 
+          {
+            digitalWrite(8, HIGH);  //If value is 1 then LED turns ON
+          }
+        else if(data == 'D')       //Checks whether value of data is equal to 0
+          {
+        digitalWrite(8, LOW);   //If value is 0 then LED turns OFF
+          }
+        else if(data == 'E')            //Checks whether value of data is equal to 1 
+          {
+          digitalWrite(9, HIGH);  //If value is 1 then LED turns ON
+          }
+        else if(data == 'F')       //Checks whether value of data is equal to 0
+          {
+          digitalWrite(9, LOW);
+          }
+        else if(data == 'G')            //Checks whether value of data is equal to 1 
+          {
+          digitalWrite(10, HIGH);  //If value is 1 then LED turns ON
+          }
+        else if(data == 'H')       //Checks whether value of data is equal to 0
+          {
+          digitalWrite(10, LOW);       
+          }
+    }
+}
+
